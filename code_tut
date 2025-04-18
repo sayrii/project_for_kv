@@ -1,0 +1,251 @@
+import turtle
+
+
+screen = turtle.Screen()
+screen.setup(width=1200, height=800)
+screen.title("Pashalka")
+screen.bgcolor("white")
+
+pen = turtle.Turtle()
+pen.speed(500)
+pen.width(2)
+pen.color("black")
+
+
+square_size = 200
+gap = 50
+
+def draw_square(x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    for _ in range(4):
+        pen.forward(square_size)
+        pen.right(90)
+
+def calculate_positions():
+    total_width_top = 3 * square_size + 2 * gap
+    start_x_top = -total_width_top // 2
+
+    total_width_bottom = 2 * square_size + gap
+    start_x_bottom = -total_width_bottom // 2
+
+    top_y = square_size // 2 + gap
+    bottom_y = -square_size // 2 - gap
+
+    return start_x_top, top_y, start_x_bottom, bottom_y
+
+start_x_top, top_y, start_x_bottom, bottom_y = calculate_positions()
+
+for i in range(3):
+    draw_square(start_x_top + i * (square_size + gap), top_y)
+
+for i in range(2):
+    draw_square(start_x_bottom + i * (square_size + gap), bottom_y)
+
+def draw_blade():
+    turtle.fillcolor("blue")
+    turtle.begin_fill()
+    turtle.forward(20)
+    turtle.right(90)
+    turtle.forward(100)
+    turtle.right(90)
+    turtle.forward(20)
+    turtle.right(90)
+    turtle.forward(100)
+    turtle.right(90)
+    turtle.end_fill()
+
+def draw_handle():
+    turtle.fillcolor("white")
+    turtle.begin_fill()
+    turtle.right(90)
+    turtle.forward(50)
+    turtle.right(90)
+    turtle.forward(10)
+    turtle.right(90)
+    turtle.forward(50)
+    turtle.right(90)
+    turtle.forward(10)
+    turtle.end_fill()
+
+turtle.speed(500)
+turtle.pensize(2)
+
+turtle.penup()
+turtle.goto(-260, 130)
+turtle.pendown()
+draw_blade()
+
+turtle.penup()
+turtle.goto(-245, 20)
+turtle.pendown()
+draw_handle()
+
+turtle.penup()
+turtle.goto(-280, 30)
+turtle.pendown()
+turtle.fillcolor("white")
+turtle.begin_fill()
+turtle.forward(60)
+turtle.right(90)
+turtle.forward(10)
+turtle.right(90)
+turtle.forward(60)
+turtle.right(90)
+turtle.forward(10)
+turtle.end_fill()
+
+moon = turtle.Turtle()
+moon.speed(500)
+
+def draw_circle(color, radius, x, y):
+    moon.penup()
+    moon.goto(x, y)
+    moon.pendown()
+    moon.color(color)
+    moon.begin_fill()
+    moon.circle(radius)
+    moon.end_fill()
+
+def draw_moon():
+    draw_circle("gray", 100, 0, -50)
+
+    draw_circle("dimgray", 30, -30, -20)
+    draw_circle("dimgray", 20, 30, 90)
+    draw_circle("dimgray", 25, -55, 55)
+    draw_circle("dimgray", 15, 0, -40)
+    draw_circle("dimgray", 35, 50, -10)
+
+draw_moon()
+
+sun = turtle.Turtle()
+sun.speed(500)
+
+def draw_sun(radius):
+    sun.penup()
+    sun.goto(250, -radius + 50)
+    sun.pendown()
+    sun.color("yellow")
+    sun.begin_fill()
+    sun.circle(radius)
+    sun.end_fill()
+
+def draw_rays(radius, length):
+    for _ in range(12):
+        sun.penup()
+        sun.goto(250, -radius + 90)
+        sun.pendown()
+        sun.forward(radius)
+        sun.pendown()
+        sun.forward(length)
+        sun.penup()
+        sun.backward(length + radius)
+        sun.right(30)
+
+draw_sun(50)
+draw_rays(40, 50)
+
+def draw_solar_panel():
+    panel = turtle.Turtle()
+    panel.color("white")
+    panel.speed(1000)
+
+    panel.penup()
+    panel.goto(-205, -300)
+    panel.pendown()
+
+    panel.begin_fill()
+    panel.color("blue")
+    for _ in range(2):
+        panel.forward(160)
+        panel.left(90)
+        panel.forward(100)
+        panel.left(90)
+    panel.end_fill()
+
+    panel.color("lightgrey")
+    for i in range(0, 9):
+        panel.penup()
+        panel.goto(-205 + i * 20, -300)
+        panel.pendown()
+        panel.goto(-205 + i * 20, -200)
+
+    for i in range(-12, -7):
+        panel.penup()
+        panel.goto(-205, i * 25)
+        panel.pendown()
+        panel.goto(-44, i * 25)
+
+draw_solar_panel()
+
+def draw_rocket():
+    rocket = turtle.Turtle()
+    rocket.speed(5000)
+
+    rocket.penup()
+    rocket.goto(115, -162)
+    rocket.pendown()
+    rocket.color("red")
+    rocket.fillcolor("red")
+    rocket.begin_fill()
+    rocket.goto(130, -112)
+    rocket.goto(145, -162)
+    rocket.goto(115, -162)
+    rocket.end_fill()
+
+    rocket.penup()
+    rocket.goto(115, -162)
+    rocket.pendown()
+    rocket.color("gray")
+    rocket.fillcolor("gray")
+    rocket.begin_fill()
+    rocket.goto(115, -162)
+    rocket.goto(131, -300)
+    rocket.goto(145, -162)
+    rocket.end_fill()
+
+    rocket.penup()
+    rocket.goto(130, -193)
+    rocket.pendown()
+
+    rocket.color("black")
+    rocket.fillcolor("black")
+    rocket.begin_fill()
+    rocket.circle(10)
+    rocket.end_fill()
+
+    rocket.penup()
+    rocket.goto(130, -190)
+    rocket.pendown()
+    rocket.color("blue")
+    rocket.fillcolor("blue")
+    rocket.begin_fill()
+    rocket.circle(7)
+    rocket.end_fill()
+
+    rocket.penup()
+    rocket.goto(130, -186)
+    rocket.pendown()
+    rocket.color("white")
+    rocket.fillcolor("white")
+    rocket.begin_fill()
+    rocket.circle(2)
+    rocket.end_fill()
+
+    rocket.penup()
+    rocket.goto(131, -300)
+    rocket.pendown()
+    rocket.color("gray")
+    rocket.fillcolor("gray")
+    rocket.begin_fill()
+
+    rocket.goto(-34 + 143, -70 -250)
+    rocket.goto(35 + 115, -70 - 250)
+    rocket.goto(130, -250)
+    rocket.goto(-34 + 143, -70 -250)
+    rocket.end_fill()
+draw_rocket()
+
+pen.hideturtle()
+turtle.done()
